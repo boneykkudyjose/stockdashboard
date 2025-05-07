@@ -9,6 +9,12 @@ import datetime
 import json
 import plotly.express as px
 
+
+query_params = st.query_params
+if "n8n_ping" in query_params:
+    st.write("Ping received")
+    st.stop()
+
 st.set_page_config(page_title="Stock Research Tool", layout="wide")
 
 st.title("📊 Stock Research Dashboard")
@@ -139,7 +145,7 @@ def get_earnings_date(ticker):
         return "Error"
 
 
-        
+
 def get_reddit_mentions(ticker):
     url = f"https://www.reddit.com/search/?q={ticker}&sort=new"
     headers = {"User-Agent": "Mozilla/5.0"}
